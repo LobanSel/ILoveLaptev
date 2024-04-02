@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+#  database:
+#    image: postgres
+#    restart: always
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_DB: Kolmakov
+#    volumes:
+#      - ./pgdata:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+
+  reddit_service:
+    restart: on-failure
+    container_name: reddit_service
+    build: reddit_service/
+    ports:
+      - "8000:80"
+#    depends_on:
+#      - database
+
+  favourite_service:
+    restart: on-failure
+    container_name: favourite_service
+    build: favourite_service/
+    ports:
+      - "8001:80"
+##    depends_on:
+##      - database
