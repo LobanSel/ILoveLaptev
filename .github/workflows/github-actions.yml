@@ -23,7 +23,7 @@ jobs:
           pip install psycopg2-binary
           pip install pytest
           pip install pytest-asyncio
-          pip install --no-cache-dir --upgrade -r reddit_service/requirements.txt
+          pip install --no-cache-dir --upgrade -r movies_service/requirements.txt
 
       - name: Prepare for tests (compose up)
         run: docker compose up -d --build
@@ -37,8 +37,8 @@ jobs:
       - name: Clean up (compose down)
         run: docker compose down
 
-  build_and_push_reddit_service:
-    name: Build and push reddit service to Yandex Cloud
+  build_and_push_movies_service:
+    name: Build and push movies service to Yandex Cloud
     runs-on: ubuntu-latest
     needs: [ test ]
     steps:
@@ -46,7 +46,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          cd reddit_service && docker build -f Dockerfile . --tag cr.yandex/${{ secrets.YC_REGISTRY_ID }}/ms-reddit-services:latest --platform=linux/amd64
+          cd movies_service && docker build -f Dockerfile . --tag cr.yandex/${{ secrets.YC_REGISTRY_ID }}/ms-movies-services:latest --platform=linux/amd64
 
       - name: Login to Yandex Cloud
         uses: docker/login-action@v3.0.0
@@ -57,13 +57,13 @@ jobs:
 
       - name: Push tag to Yandex Cloud
         run: |
-          docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/ms-reddit-services:latest
+          docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/ms-movies-services:latest
 
 
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    needs: [ build_and_push_reddit_service ]
+    needs: [ build_and_push_movies_service ]
     steps:
       - name: Deploy serverless container
         uses: yc-actions/yc-sls-container-deploy@v1
@@ -71,7 +71,7 @@ jobs:
           yc-sa-json-credentials: ${{ secrets.YC_KEYS }}
           container-name: ${{ secrets.YC_CONTAINER_NAME }}
           folder-id: ${{ secrets.YC_FOLDER_ID }}
-          revision-image-url: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/ms-reddit-services:latest
+          revision-image-url: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/ms-movies-services:latest
           revision-service-account-id: ${{ secrets.YC_SA_ID }}
           revision-env: |
             POSTGRES_URL=${{ secrets.ENV_POSTGRES_URL }}
