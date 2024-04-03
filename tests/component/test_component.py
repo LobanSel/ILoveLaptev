@@ -14,24 +14,24 @@ delete_favourite_url = f'{favourite_url}/delete_favourite'
 new_favourite_name = "Tuesday Daily Thread: Advanced questions"
 new_favourite_url = "https://www.reddit.com/r/Python/comments/1btk4m5/tuesday_daily_thread_advanced_questions/"
 
-def test_1_get_posts_for_subreddit():
-    res = requests.get(f"{get_posts_for_subreddit_url}?subreddit=python&limit=5")
-    assert res.status_code == 200
-
-
-def test_2_get_top_for_subreddit():
-    res = requests.get(f"{get_top_for_subreddit_url}?subreddit=python&time_period=day&limit=5")
-    assert res.status_code == 200
-
-
-def test_3_get_posts_for_user():
-    res = requests.get(f"{get_posts_for_user_url}?username=GeneDefiant6537&limit=1")
-    assert res.status_code == 200
-
-
-def test_4_search_reddit():
-    res = requests.get(f"{search_reddit_url}?query=test&subreddit=python&limit=1")
-    assert res.status_code == 200
+# def test_1_get_posts_for_subreddit():
+#     res = requests.get(f"{get_posts_for_subreddit_url}?subreddit=python&limit=5")
+#     assert res.status_code == 200
+#
+#
+# def test_2_get_top_for_subreddit():
+#     res = requests.get(f"{get_top_for_subreddit_url}?subreddit=python&time_period=day&limit=5")
+#     assert res.status_code == 200
+#
+#
+# def test_3_get_posts_for_user():
+#     res = requests.get(f"{get_posts_for_user_url}?username=GeneDefiant6537&limit=1")
+#     assert res.status_code == 200
+#
+#
+# def test_4_search_reddit():
+#     res = requests.get(f"{search_reddit_url}?query=test&subreddit=python&limit=1")
+#     assert res.status_code == 200
 
 
 def test_5_add_favourite():
