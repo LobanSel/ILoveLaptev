@@ -46,8 +46,8 @@ async def get_all_favourites(db: db_dependency):
 
 
 @app.delete("/delete_favourite")
-async def delete_favourite(favourite_id: int, db: db_dependency):
-    favourite_item = db.query(Favourites).filter(Favourites.id == favourite_id).first()
+async def delete_favourite(favourite_name: str, db: db_dependency):
+    favourite_item = db.query(Favourites).filter(Favourites.name == favourite_name).first()
     if not favourite_item:
         raise HTTPException(status_code=404, detail="Favourite not found")
 

@@ -35,7 +35,7 @@ def test_4_search_reddit():
 
 
 def test_5_add_favourite():
-    res = requests.post(f"{add_favourite_url}?name={new_favourite_name}&url={new_favourite_url}").json()
+    res = requests.post(f"{add_favourite_url}?name={new_favourite_name}&url={new_favourite_url}")
     assert res.status_code == 200
 
 
@@ -44,5 +44,5 @@ def test_6_get_all_favourites():
     assert res.status_code == 200
 
 def test_7_delete_favourite():
-    res = requests.delete(f"{delete_favourite_url}?favourite_id=1")
+    res = requests.delete(f"{delete_favourite_url}?favourite_name={new_favourite_name}")
     assert res.status_code == 200
