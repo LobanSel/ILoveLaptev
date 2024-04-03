@@ -2,7 +2,6 @@ import os
 import uvicorn
 from fastapi import FastAPI, Depends, HTTPException, status
 from typing import Annotated
-
 from sqlalchemy.orm import Session
 
 from database import database as database
