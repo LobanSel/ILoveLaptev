@@ -35,7 +35,7 @@ async def service_alive():
 async def get_posts_for_subreddit(subreddit: str, limit: int):
     async with httpx.AsyncClient() as client:
         url = f"https://www.reddit.com/r/{subreddit}/new.json?limit={limit}"
-        headers = {'User-Agent': 'reddit-access-script by /u/yourusername'}
+        headers = {'User-Agent': 'a simple script for my University project by /u/Bar0nGeddon'}
         try:
             response = await client.get(url, headers=headers)
 
