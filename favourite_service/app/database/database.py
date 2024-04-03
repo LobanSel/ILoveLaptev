@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, String,  Integer
+from sqlalchemy import create_engine, Column, String, DateTime, Integer
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -11,9 +11,11 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
-class Favourites(Base):
-    __tablename__ = 'favourites_lobanov'
+class MovieDB(Base):
+    __tablename__ = 'favourite_selimdzhanov'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    url = Column(String, nullable=False)
+    movie_name = Column(String, nullable=False)
+    creation_date = Column(DateTime, nullable=False)
+    genre = Column(String, nullable=False)
+    director = Column(String, nullable=False)

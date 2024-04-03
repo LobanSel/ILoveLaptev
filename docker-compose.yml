@@ -2,10 +2,10 @@ version: '3.9'
 
 services:
 
-  reddit_service:
+  movies_service:
     restart: on-failure
-    container_name: reddit_service
-    build: reddit_service/
+    container_name: movies_service
+    build: movies_service/
     ports:
       - "8000:80"
 
