@@ -39,4 +39,4 @@ async def get_movie_by_id(q: list | None = Query()):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv('PORT', 80)))
+    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv('PORT', 80))) 
